@@ -6,21 +6,19 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="container home-page">
-        
-    </div>
     <div id="map"></div>
   <script>
       var map;
       function initMap() {
+          let losAngeles = {lat: 34.063380, lng: -118.358080}
         map = new google.maps.Map(document.getElementById('map'), {
-            center: {lat: -34.397, lng: 150.644},
+            center: losAngeles,
             zoom: 8
           });  
       }
   </script>
     <script async
-    src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap">
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAnhHmvZVM0jN_PAK02hIwQIe7b5To6o5c&callback=initMap">
 </script>
     <script src="index.js" async defer ></script>
 </body>
