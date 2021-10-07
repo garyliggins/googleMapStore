@@ -23,7 +23,7 @@ app.post("/api/stores", (req,res) => {
         storeName: store.name,
         phoneNumber: store.phoneNumber,
         address: store.address,
-        openStatustext: store.openStatusText,
+        openStatusText: store.openStatusText,
         addressLines: store.addressLines,
         location: {
           type: "Point",
