@@ -50,6 +50,7 @@
 }
 
 .stores-list-container {
+  display: flex;
   width: 400px;
   border-radius: 30px;
   background-color: white;
@@ -58,6 +59,8 @@
   bottom: 20px;
   position: absolute;
   z-index: 10;
+  padding-bottom: 30px;
+  overflow: hidden;
 }
 
 .store-info-window {
@@ -104,4 +107,67 @@
   border-radius: 50%;
   color: white;
   margin-right: 8px;
+ }
+
+ .stores-list {
+   flex-grow: 1;
+   padding-left: 20px;
+   padding-right: 20px;
+   overflow-y: scroll;
+ }
+
+ .store-container {
+  border-bottom: 1px solid #979797;
+  display: flex;
+ }
+
+ .store-info-container {
+  flex-grow: 1;
+ }
+
+ .store-number-container {
+  display: flex;
+  align-items: center;
+ }
+
+ .store-address {
+   font-size: 21px;
+   color: #514c4c;
+   margin-top: 30px;
+ }
+
+ .store-address span {
+   display: block;
+ }
+
+ .store-phone-number {
+   color: #b5adad;
+   margin-top: 15px;
+   margin-bottom: 15px;
+ }
+
+ .store-number {
+   width: 30px;
+   height: 30px;
+   background-color: #454e53;
+   border-radius: 50%;
+   color: white;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+ }
+
+ .store-container-background {
+   display: flex;
+   flex-grow: 1;
+   padding-left: 8px;
+   padding-right: 8px;
+   margin-bottom: 12px;
+   margin-top: 12px;
+   transition: all 0.2s ease-in-out;
+   border-radius: 18px;
+   cursor: pointer;
+ }
+ .store-container-background:hover {
+  background-color: #cccccc87;
  }

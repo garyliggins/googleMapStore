@@ -3,6 +3,7 @@ const app = express()
 const port = 3000
 const mongoose = require('mongoose');
 const Store = require('./api/models/store');
+const axios = require('axios');
 
 app.use(function(req,res,next){
   res.header('Access-Control-Allow-Origin', '*');
@@ -46,6 +47,25 @@ app.post("/api/stores", (req,res) => {
 })
 
 app.get('/api/stores', (req, res) => {
+  const zipCode = req.query.zip_code;
+
+  const googleMapsURL = "https://maps.googleapis.com/maps/api/geocode/json"
+
+  axios.get(googleMapsURL, {
+    params: {
+      address: zipCode,
+      key: "AIzaSyAnhHmvZVM0jN_PAK02hIwQIe7b5To6o5c"
+    }
+  }).then((response) => {
+    const data = response.data;
+    const coordinates = [
+      data.results[0].geometry.location.lng,
+      data.results[0].geometry.location.lat
+    ]
+    console.log(coordinates)
+  }).catch((error) =>{
+    console.log(error);
+  })
   Store.find({}, (err, stores) => {
     if (err){
       res.status(500).send(err)
