@@ -1,22 +1,26 @@
+
 const mongoose = require('mongoose');
 
 const storeSchema = mongoose.Schema({
+    // _id: mongoose.Schema.Types.ObjectId,
     storeName: String,
     phoneNumber: String,
-    address: {},
-    openStatusText: String,
-    addressLines: Array,
     location: {
         type: {
             type: String,
             enum: ['Point'],
-        required:true
+            required: true
         },
         coordinates: {
             type: [Number],
             required: true
         }
-    }
-})
+    },
+    address: {},
+    openStatusText: String,
+    addressLines: Array
+});
+
+// storeSchema.index({ location: '2dsphere' }, { sparse: true });
 
 module.exports = mongoose.model('Store', storeSchema);
