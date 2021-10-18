@@ -215,15 +215,16 @@
   justify-content: center;
 } 
 
- .intro .enter-zip {
+  .enter-zip {
   color: #514C4C;
   font-size: 22px;
 }
 
-.intro .find-stores {
+ .find-stores {
   color: #1985A1;
   font-size: 20px;
 } 
+
 
 .no-stores-found {
   height: 100%;

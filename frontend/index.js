@@ -9,8 +9,13 @@ const API_URL = "http://localhost:3000/api/stores";
 
 
 const getStores = () => {
+    const zipCode = document.getElementById('zip-code').value;
+    if(!zipCode){
+        return;
+    }
     const API_URL = 'http://localhost:3000/api/stores';
-    fetch(API_URL)
+    const fullUrl = `${API_URL}?zip_code=${zipCode}`;
+    fetch(fullUrl)
     .then((response) => {
        if(response.status == 200){
            return response.json()
@@ -18,9 +23,13 @@ const getStores = () => {
            throw new Error(response.status);
        }
     }).then((data) => {
+        if(data.length > 0) {
+        clearLocations();
        searchLocationsNear(data)
        setStoresList(data);
        setOnClickListener();
+        }
+        
     })
 }
   
@@ -39,14 +48,14 @@ const setData = (data) => {
 
 
 
-// const noStoresFound = () => {
-//     const html = `
-//     <div class="no-stores-found">
-//         No Stores Found
-//     </div>
-//     `
-//     document.querySelector('.stores-list').innerHTML = html;
-// }
+const noStoresFound = () => {
+    const html = `
+    <div class="no-stores-found">
+        No Stores Found
+    </div>
+    `
+    document.querySelector('.stores-list').innerHTML = html;
+}
 
 const setOnClickListener = () => {
     let storeElements = document.querySelectorAll('.store-container');
@@ -130,6 +139,13 @@ const createMarker = (latlng, name, address, openStatusText, phone, storeNumber)
     markers.push(marker);
 } 
 
+const clearLocations = () => {
+    infoWindow.close();
+    for (var i = 0; i < markers.length; i++) {
+        markers[i].setMap(null);
+    }
+    markers.length = 0;
+}
 
 
 
@@ -149,6 +165,14 @@ const searchLocationsNear = (stores) => {
     map.fitBounds(bounds);
 }
 
+
+
+const onEnter = (e) => {
+    if(e.key == "Enter"){
+        getStores();
+    }
+}
+
 function initMap() {
     let losAngeles = {lat: 34.063380, lng: -118.358080}
    map = new google.maps.Map(document.getElementById('map'), {
@@ -156,7 +180,7 @@ function initMap() {
         zoom: 8
     })
     infoWindow = new google.maps.InfoWindow();
-    getStores();
+    
     // createMarker(); 
 };
 initMap();
