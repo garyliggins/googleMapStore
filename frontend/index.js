@@ -28,6 +28,9 @@ const getStores = () => {
        searchLocationsNear(data)
        setStoresList(data);
        setOnClickListener();
+        } else {
+            clearLocations();
+            noStoresFound();
         }
         
     })
@@ -90,16 +93,10 @@ const setStoresList = (stores) => {
     document.querySelector('.stores-list').innerHTML = storesHtml;
 }
 
-// const clearLocations = () => {
-//     infoWindow.close();
-//     for (var i = 0; i < markers.length; i++) {
-//         markers[i].setMap(null);
-//     }
-//     markers.length = 0;
-// }
+
 
 const createMarker = (latlng, name, address, openStatusText, phone, storeNumber) =>  {
-    let html = `<div class="store-info-wondow">
+    let html = `<div class="store-info-window">
                   <div class="store-info-name">
                     ${name}
                   </div>
